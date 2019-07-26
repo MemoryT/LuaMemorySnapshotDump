@@ -657,6 +657,12 @@ local function OutputMemorySnapshot(strSavePath, strExtraFileName, nMaxRescords,
 
 	-- Sort result.
 	table.sort(cRes, function (l, r)
+		if (cRefInfo[l] == nil) and (cRefInfo[r] ~= nil) then
+			return false
+				
+		if (cRefInfo[l] ~= nil) and (cRefInfo[r] == nil) then
+			return true		
+		
 		return cRefInfo[l] > cRefInfo[r]
 	end)
 
